@@ -1,0 +1,15 @@
+<h1>Whiskeys</h1>
+<ul class="list-unstyled" class="container">
+  <li ng-repeat="whiskey in whiskeys">
+    <div class="row whiskey-item">
+      <div class="col-xs-1 text-center">
+        <img class="image" src="{{whiskey.imageUrl}}">
+      </div><div class="col-xs-9">
+        <h4>{{whiskey.name}}</h4>
+        <div class="distillery">Distillery: {{whiskey.distillery}}</div>
+      </div><div class="col-xs-2 text-right">
+        <a href="#/details/{{whiskey.id}}" class="btn btn-primary">Details</a>
+      </div>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,19 @@
+<h1>{{whiskey.name}}</h1>
+<p>Distiller: {{whiskey.distillery}}</p>
+<h2>Reviews</h2>
+<ul class="list-unstyled" class="container">
+  <li ng-repeat="review in whiskey.reviews" class="review-item">
+    <div class="row">
+      <div class="col-xs-12 rating">Rating: {{review.rating}}</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 comment">{{review.comment}}</div>
+    </div>
+  </li>
+  <li ng-show="!whiskey.reviews.length">
+    (no reviews)
+  </li>
+  <li>
+    <a href="#/review/{{whiskey.id}}" class="btn btn-primary">Add Review</a>
+  </li>
+</ul>

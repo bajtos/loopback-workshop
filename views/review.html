@@ -1,0 +1,22 @@
+<form role="form">
+  <div class="form-group">
+    <label for="rating">Rating</label>
+    <select id="rating" ng-model="data.rating" class="form-control">
+      <option>5</option>
+      <option>4</option>
+      <option>3</option>
+      <option>2</option>
+      <option>1</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="comment">Comment</label>
+    <textarea id="comment" ng-model="data.comment" class="form-control"
+              rows="5" placeholder="Describe your experience"></textarea>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-default" ng-click="submit()">Submit</button>
+  </div>
+</form>
