@@ -21,5 +21,6 @@ angular.module('whiskeyApp')
       // TODO create a new review using $scope.data
       // Redirect back to the details page when done:
       //   $location.path('/details/' + whiskeyId);
+      console.error('Review controller is not implemented yet');
     };
   });

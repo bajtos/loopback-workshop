@@ -13,4 +13,5 @@ angular.module('whiskeyApp')
     // The id is in `$routeParams.id`
     // Use `Whiskey.findOne` and add `include` to the `filter` property
     // to fetch the list of reviews too.
+    console.error('Details controller is not implemented yet');
   });
