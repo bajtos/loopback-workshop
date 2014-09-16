@@ -3,7 +3,7 @@
   <li ng-repeat="whiskey in whiskeys">
     <div class="row whiskey-item">
       <div class="col-xs-1 text-center">
-        <img class="image" src="{{whiskey.imageUrl}}">
+        <img class="image" ng-src="{{whiskey.imageUrl}}"/>
       </div><div class="col-xs-9">
         <h4>{{whiskey.name}}</h4>
         <div class="distillery">Distillery: {{whiskey.distillery}}</div>
