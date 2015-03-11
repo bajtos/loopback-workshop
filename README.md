@@ -8,6 +8,27 @@ src="https://raw.githubusercontent.com/angular/angular.js/master/images/logo/Ang
 In this workshop, you will learn how to build a full-stack Whiskey-voting
 application using [LoopBack](http://loopback.io) and [AngularJS](https://angularjs.org/).
 
+## Prerequisites
+
+You will need the following tools installed on your machine:
+
+ - Node.js v0.10, [v0.12](https://nodejs.org/download/)
+   or [io.js 1.x](https://iojs.org)
+
+ - Yeoman generator for LoopBack:
+
+    ```
+    $ npm install -g generator-loopback
+    ```
+
+ - LoopBack SDK for AngularJS
+
+    ```
+    $ npm install -g loopback-sdk-angular-cli
+    ```
+
+Last but not least, a working internet connection is needed too.
+
 ## Contents
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update
@@ -35,17 +56,16 @@ application using [LoopBack](http://loopback.io) and [AngularJS](https://angular
   $ npm install -g generator-loopback
   ```
 
- 2. Create and switch to your project's directory:
+ 2. Scaffold a loopback application:
 
   ```
-  $ mkdir whiskey
+  $ yo loopback whiskey
+  ```
+
+ 3. Switch to your project's directory:
+
+  ```
   $ cd whiskey
-  ```
-
- 3. Scaffold a loopback application:
-
-  ```
-  $ yo loopback
   ```
 
  4. Add a "Whiskey" model with the properties "name" (string), "distillery"
@@ -53,35 +73,37 @@ application using [LoopBack](http://loopback.io) and [AngularJS](https://angular
 
   ```
   $ yo loopback:model Whiskey
-  [?] Enter the model name: Whiskey
-  [?] Select the data-source to attach Whiskey to: db (memory)
-  [?] Expose Whiskey via the REST API? Yes
-  [?] Custom plural form (used to build REST URL):
+  ? Enter the model name: Whiskey
+  ? Select the data-source to attach Whiskey to: db (memory)
+  ? Select model's base class: PersistedModel
+  ? Expose Whiskey via the REST API? Yes
+  ? Custom plural form (used to build REST URL):
+
   Let's add some Whiskey properties now.
 
   Enter an empty property name when done.
-  [?] Property name: name
+  ? Property name: name
      invoke   loopback:property
-  [?] Property type: string
-  [?] Required? Yes
+  ? Property type: string
+  ? Required? Yes
 
   Let's add another Whiskey property.
   Enter an empty property name when done.
-  [?] Property name: distillery
+  ? Property name: distillery
      invoke   loopback:property
-  [?] Property type: string
-  [?] Required? Yes
+  ? Property type: string
+  ? Required? Yes
 
   Let's add another Whiskey property.
   Enter an empty property name when done.
-  [?] Property name: imageUrl
+  ? Property name: imageUrl
      invoke   loopback:property
-  [?] Property type: string
-  [?] Required? Yes
+  ? Property type: string
+  ? Required? Yes
 
   Let's add another Whiskey property.
   Enter an empty property name when done.
-  [?] Property name:
+  ? Property name:
   ```
 
  5. Add a "Review" model with the properties "rating" (number) and
@@ -91,11 +113,12 @@ application using [LoopBack](http://loopback.io) and [AngularJS](https://angular
 
   ```js
   yo loopback:relation
-  [?] Select the model to create the relationship from: Whiskey
-  [?] Relation type: has many
-  [?] Choose a model to create a relationship with: Review
-  [?] Enter the property name for the relation: reviews
-  [?] Optionally enter a custom foreign key:
+  ? Select the model to create the relationship from: Whiskey
+  ? Relation type: has many
+  ? Choose a model to create a relationship with: Review
+  ? Enter the property name for the relation: reviews
+  ? Optionally enter a custom foreign key:
+  ? Require a through model? No
   ```
 
  8. Start your API server
@@ -161,7 +184,7 @@ on start.
  - Install `async` module
 
   ```
-  $ npm install async
+  $ npm install --save async
   ```
 
 Restart the application and list all whiskeys including the reviews again. You
@@ -215,14 +238,7 @@ file in the next step.
     $ lb-ng server/server.js client/scripts/lb-services.js
     ```
 
- 3. Update the `index.html` file to pick up the new resource. Add the following
-  line to the list of scripts at the bottom:
-
-  ```
-  <script src="scripts/lb-services.js"></script>
-  ```
-
- 4. View the API documentation for the client services
+ 3. View the API documentation for the client services
 
   ```
   $ lb-ng-doc client/scripts/lb-services.js
