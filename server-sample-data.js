@@ -43,13 +43,15 @@ var WHISKEYS = [
   }
 ];
 
-module.exports = function(server) {
+module.exports = function(server, done) {
   console.log('Importing sample data...');
   var Whiskey = server.models.Whiskey;
   async.each(WHISKEYS, function(whiskey, next) {
+    var reviews = whiskey.reviews || [];
+    delete whiskey.reviews;
     Whiskey.create(whiskey, function(err, created) {
       if (err) return next(err);
-      async.each(whiskey.reviews || [], function(rating, cb) {
+      async.each(reviews, function(rating, cb) {
         created.reviews.create(rating, cb);
       },
       next);
@@ -59,5 +61,6 @@ module.exports = function(server) {
       console.error('Cannot import sample data.', err);
     else
       console.log('Sample data was imported.');
+    done(err);
   });
 };
