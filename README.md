@@ -15,10 +15,10 @@ You will need the following tools installed on your machine:
  - Node.js v0.10, [v0.12](https://nodejs.org/download/)
    or [io.js 1.x](https://iojs.org)
 
- - Yeoman generator for LoopBack:
+ - Yeoman and the LoopBack generator:
 
     ```
-    $ npm install -g generator-loopback
+    $ npm install -g yo generator-loopback
     ```
 
  - LoopBack SDK for AngularJS
