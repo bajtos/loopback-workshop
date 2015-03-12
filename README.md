@@ -144,8 +144,7 @@ Last but not least, a working internet connection is needed too.
   {
     "name": "Green Spot 12-year-old",
     "distillery": "Midleton",
-    "imageUrl":
-"http://static.whiskybase.com/storage/whiskies/5/3/084/86415-big.jpg"
+    "imageUrl": "http://static.whiskybase.com/storage/whiskies/5/3/084/86415-big.jpg"
   }
   ```
 
@@ -158,8 +157,7 @@ previous step as `{id}` parameter in the route:
   POST /Whiskeys/{id}/reviews
   {
     "rating": 5,
-    "comment": "Had to travel across half of Ireland to find a place where they
-serve this one"
+    "comment": "Had to travel across half of Ireland to find a place where they serve this one"
   }
   ```
 
