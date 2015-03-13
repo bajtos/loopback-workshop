@@ -50,25 +50,25 @@ Last but not least, a working internet connection is needed too.
 
 ## Scaffold an API server in 5 minutes
 
- 1. Start by installing LoopBack's Yeoman generator:
-
-  ```
-  $ npm install -g generator-loopback
-  ```
-
- 2. Scaffold a loopback application:
+ 1. Scaffold a loopback application:
 
   ```
   $ yo loopback whiskey
   ```
 
- 3. Switch to your project's directory:
+  > This command creates a new directory "whiskey" containing your new LoopBack project.
+  > Take a minute to familiarise with the layout of source and configuration
+  > files that were generated for you, read
+  > [Project layout reference](http://docs.strongloop.com/display/LB/Project+layout+reference)
+  > to learn more.
+
+ 2. Switch to your project's directory:
 
   ```
   $ cd whiskey
   ```
 
- 4. Add a "Whiskey" model with the properties "name" (string), "distillery"
+ 3. Add a "Whiskey" model with the properties "name" (string), "distillery"
   (string), "imageUrl" (string):
 
   ```
@@ -106,10 +106,25 @@ Last but not least, a working internet connection is needed too.
   ? Property name:
   ```
 
- 5. Add a "Review" model with the properties "rating" (number) and
-  "comment" (string).
+  > The model generator creates two new files in your project:
+  >
+  >  - `common/models/whiskey.json` describing the model and its properties,
+  >  - `common/models/whiskey.js` where you can implement your custom model
+  >    methods.
+  >
+  > It also adds an new entry to `server/model-config.json`, this entry
+  > specifies the model's data source.
+  >
+  > See the following resources for more information:
+  >
+  >  - [Using the model generator](http://docs.strongloop.com/display/LB/Using+the+model+generator)
+  >  - [Model definition JSON file](http://docs.strongloop.com/display/LB/Model+definition+JSON+file)
+  >  - [Model configuration](http://docs.strongloop.com/display/LB/model-config.json)
 
- 6. Setup the relation a "Whiskey" has many "reviews":
+ 4. Add a "Review" model with the properties "rating" (number, required) and
+  "comment" (string, optional).
+
+ 5. Setup the relation a "Whiskey" has many "reviews":
 
   ```js
   yo loopback:relation
@@ -121,7 +136,13 @@ Last but not least, a working internet connection is needed too.
   ? Require a through model? No
   ```
 
- 8. Start your API server
+  > The new relation is described in model's JSON file,
+  > `common/models/whiskey.json` in this case. You can learn more about relations
+  > in [Creating model relations](http://docs.strongloop.com/display/LB/Creating+model+relations)
+  > and the [Relations section](http://docs.strongloop.com/display/LB/Model+definition+JSON+file#ModeldefinitionJSONfile-Relations)
+  > of Model definition page.
+
+ 6. Start your API server
 
   ```
   $ node .
@@ -190,17 +211,13 @@ should see the sample records provided by the script we just wrote.
 
 ## Add an AngularJS frontend
 
- 1. Remove the `client` directory scaffolded by the LoopBack generator.
+ 1. Remove the placeholder `server/boot/root.js` that was serving the server
+    status at the root `/` URL.
 
- 2. Download the ZIP archive of this repository from
+    > Refer to [Defining boot scripts](http://docs.strongloop.com/display/LB/Defining+boot+scripts)
+    for more information about boot scripts.
 
-    https://github.com/bajtos/loopback-workshop/archive/master.zip.
-
- 3. Extract the archive and copy the `client` directory to your project.
-
- 4. Remove `server/boot/root.js` that was serving the `/` URL.
-
- 5. Modify the server to serve the client app. Open `server/middleware.json`
+ 2. Modify the server to serve the client app. Open `server/middleware.json`
   and edit the `files` section:
 
   ```js
@@ -210,6 +227,27 @@ should see the sample records provided by the script we just wrote.
     }
   }
   ```
+
+  > The `loopback#static` middleware serves files from the directory configured
+  > via the "params" property. The configuration above will serve
+  > `client/index.html` at `http://localhost:3000/`, `client/scripts/app.js`
+  > at `http://localhost:3000/scripts/app.js`, etc.
+  >
+  > You can learn more about middleware in
+  > [Defining middleware](http://docs.strongloop.com/display/LB/Defining+middleware).
+
+ 3. Remove the `client` directory scaffolded by the LoopBack generator.
+  It is just a dummy placeholder not containing any front-end.
+
+ 4. Download the ZIP archive of this repository from
+
+    https://github.com/bajtos/loopback-workshop/archive/master.zip.
+
+ 5. Extract the archive and copy the `client` directory to your project.
+
+  > Since the content of the `client` directory is served as-is,
+  > you can put any single-page application there instead of the workshop app
+  > provided in this repository.
 
  6. Restart the app and open it in browser. Check that the scaffolded client
   is served at the root URL:
@@ -224,26 +262,32 @@ file in the next step.
 
 ## Generate Angular client services
 
- 1. Install the code generator:
-
-  ```
-  $ npm install -g loopback-sdk-angular-cli
-  ```
-
- 2. Generate the services
+ 1. Generate the services using the code generator provided by LoopBack's SDK:
 
     ```
     $ lb-ng server/server.js client/scripts/lb-services.js
     ```
 
- 3. View the API documentation for the client services
+ 2. View the API documentation for the client services
 
   ```
   $ lb-ng-doc client/scripts/lb-services.js
   ```
 
-  Note: Reload the doc page if it does not contain any services. This is a
-  know bug in docular.
+  **NOTE** Reload the doc page if it does not contain any services. This is a
+  know bug in Docular.
+
+  > The command parses ngdoc comments in `lb-services.js`, builds HTML
+  > pages with the API documentation and starts a server serving the docs
+  > at http://localhost:3030.
+  >
+  > Unfortunately the Docular module we use for API docs is rather unreliable
+  > and does not report start errors well. If you don't see a message
+  > pointing you to http://localhost:3030, then assume Docular failed
+  > and the API docs is not available for you :(
+  >
+  > If you need root privileges to install global packages, then running
+  > `lb-ng-docs` as root (via `sudo`) may fix the problem.
 
   ![Docular screenshot](http://ibin.co/1ZjQBOZYCafH)
 
