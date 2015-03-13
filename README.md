@@ -50,25 +50,19 @@ Last but not least, a working internet connection is needed too.
 
 ## Scaffold an API server in 5 minutes
 
- 1. Start by installing LoopBack's Yeoman generator:
-
-  ```
-  $ npm install -g generator-loopback
-  ```
-
- 2. Scaffold a loopback application:
+ 1. Scaffold a loopback application:
 
   ```
   $ yo loopback whiskey
   ```
 
- 3. Switch to your project's directory:
+ 2. Switch to your project's directory:
 
   ```
   $ cd whiskey
   ```
 
- 4. Add a "Whiskey" model with the properties "name" (string), "distillery"
+ 3. Add a "Whiskey" model with the properties "name" (string), "distillery"
   (string), "imageUrl" (string):
 
   ```
@@ -106,10 +100,10 @@ Last but not least, a working internet connection is needed too.
   ? Property name:
   ```
 
- 5. Add a "Review" model with the properties "rating" (number) and
-  "comment" (string).
+ 4. Add a "Review" model with the properties "rating" (number, required) and
+  "comment" (string, optional).
 
- 6. Setup the relation a "Whiskey" has many "reviews":
+ 5. Setup the relation a "Whiskey" has many "reviews":
 
   ```js
   yo loopback:relation
@@ -121,7 +115,7 @@ Last but not least, a working internet connection is needed too.
   ? Require a through model? No
   ```
 
- 8. Start your API server
+ 6. Start your API server
 
   ```
   $ node .
@@ -224,19 +218,13 @@ file in the next step.
 
 ## Generate Angular client services
 
- 1. Install the code generator:
-
-  ```
-  $ npm install -g loopback-sdk-angular-cli
-  ```
-
- 2. Generate the services
+ 1. Generate the services using the code generator provided by LoopBack's SDK:
 
     ```
     $ lb-ng server/server.js client/scripts/lb-services.js
     ```
 
- 3. View the API documentation for the client services
+ 2. View the API documentation for the client services
 
   ```
   $ lb-ng-doc client/scripts/lb-services.js
